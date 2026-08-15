@@ -19,3 +19,10 @@ class Transaction(Base):
             f"amount={self.amount}, "
             f"category={self.category})"
         )
+
+class Category(Base):
+    __tablename__ = "categories"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True)
+    type = Column(String)
