@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr, field_validator
 from typing import Literal
 from datetime import date
 from sqlalchemy.orm import Session
@@ -81,9 +81,19 @@ def get_me(
 class TransactionCreate(BaseModel):
     type: Literal["income", "expense"]
     amount: float = Field(gt=0)
-    category: str
-    description: str
+    category: str = Field(min_length=1, max_length=50)
+    description: str = Field(min_length=1, max_length=200)
     date: date
+
+    @field_validator("category", "description")
+    @classmethod
+    def clean_text(cls, value):
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Field cannot be empty")
+
+        return value
 
 
 class TransactionResponse(TransactionCreate):
@@ -93,8 +103,18 @@ class TransactionResponse(TransactionCreate):
         "from_attributes": True
     }
 class CategoryCreate(BaseModel):
-    name: str
+    name: str = Field(min_length=1, max_length=50)
     type: Literal["income", "expense"]
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, value):
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Category name cannot be empty")
+
+        return value
 
 
 class CategoryResponse(CategoryCreate):
@@ -105,9 +125,19 @@ class CategoryResponse(CategoryCreate):
     }
 
 class UserCreate(BaseModel):
-    name: str
-    email: str
-    password: str
+    name: str = Field(min_length=2, max_length=50)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=72)
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, value):
+        value = value.strip()
+
+        if len(value) < 2:
+            raise ValueError("Name must contain at least 2 characters")
+
+        return value
 
 
 class UserResponse(BaseModel):
@@ -120,7 +150,7 @@ class UserResponse(BaseModel):
     }
 
 class UserLogin(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
