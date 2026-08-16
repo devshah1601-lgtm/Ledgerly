@@ -11,7 +11,9 @@ from Security import (
     decode_access_token
 )
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-
+import csv
+from io import StringIO
+from fastapi.responses import StreamingResponse
 import models
 from database import engine, SessionLocal
 
@@ -629,3 +631,49 @@ def expenses_by_category(
         "month": month,
         "expenses": category_totals
     }
+
+@app.get("/transactions/export/csv")
+def export_transactions_csv(
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    transactions = db.query(models.Transaction).filter(
+        models.Transaction.user_id == current_user.id
+    ).order_by(
+        models.Transaction.date,
+        models.Transaction.id
+    ).all()
+
+    output = StringIO()
+
+    writer = csv.writer(output)
+
+    writer.writerow([
+        "ID",
+        "Date",
+        "Type",
+        "Category",
+        "Description",
+        "Amount"
+    ])
+
+    for transaction in transactions:
+        writer.writerow([
+            transaction.id,
+            transaction.date,
+            transaction.type,
+            transaction.category,
+            transaction.description,
+            transaction.amount
+        ])
+
+    output.seek(0)
+
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={
+            "Content-Disposition":
+            "attachment; filename=ledgerly_transactions.csv"
+        }
+    )
