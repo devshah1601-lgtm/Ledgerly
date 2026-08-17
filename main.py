@@ -1,3 +1,5 @@
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel, Field, EmailStr, field_validator
 from typing import Literal
@@ -16,6 +18,7 @@ from io import StringIO
 from fastapi.responses import StreamingResponse
 import models
 from database import engine, SessionLocal
+from fastapi.middleware.cors import CORSMiddleware
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -23,7 +26,25 @@ app = FastAPI()
 
 security = HTTPBearer()
 
+app.mount(
+    "/css",
+    StaticFiles(directory="frontend/css"),
+    name="css"
+)
 
+app.mount(
+    "/js",
+    StaticFiles(directory="frontend/js"),
+    name="js"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
@@ -246,9 +267,9 @@ def register_user(
 
     return new_user
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def home():
-    return {"message": "Welcome to Ledgerly"}
+    return FileResponse("frontend/login.html")
 
 
 @app.post("/transactions", response_model=TransactionResponse)
@@ -707,3 +728,32 @@ def export_transactions_csv(
             "attachment; filename=ledgerly_transactions.csv"
         }
     )
+
+@app.get("/login.html", include_in_schema=False)
+def login_page():
+    return FileResponse("frontend/login.html")
+
+
+@app.get("/register.html", include_in_schema=False)
+def register_page():
+    return FileResponse("frontend/register.html")
+
+
+@app.get("/dashboard.html", include_in_schema=False)
+def dashboard_page():
+    return FileResponse("frontend/dashboard.html")
+
+
+@app.get("/transactions.html", include_in_schema=False)
+def transactions_page():
+    return FileResponse("frontend/transactions.html")
+
+
+@app.get("/categories.html", include_in_schema=False)
+def categories_page():
+    return FileResponse("frontend/categories.html")
+
+
+@app.get("/reports.html", include_in_schema=False)
+def reports_page():
+    return FileResponse("frontend/reports.html")

@@ -1,5 +1,15 @@
 .venv/
 __pycache__/
 *.pyc
-ledgerly.db
 .idea/
+
+# Local databases
+ledgerly.db
+ledgerly_backup.db
+
+# Environment variables / secrets
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

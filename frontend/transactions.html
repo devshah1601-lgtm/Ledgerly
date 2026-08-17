@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ledgerly Transactions</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="dashboard-body">
+
+    <header class="topbar">
+
+    <div>
+        <h2>Ledgerly</h2>
+    </div>
+
+    <nav class="topbar-actions">
+
+        <a href="dashboard.html" class="nav-link">
+            Dashboard
+        </a>
+
+        <a href="transactions.html" class="nav-link active">
+            Transactions
+        </a>
+
+        <a href="categories.html" class="nav-link">
+            Categories
+        </a>
+
+        <a href="reports.html" class="nav-link">
+            Reports
+        </a>
+
+        <span id="userName">User</span>
+
+        <button id="logoutButton">
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+
+            <h1>Transactions</h1>
+
+            <p>
+                View, search, filter, edit and delete your transactions.
+            </p>
+
+        </section>
+
+
+        <section class="transactions-section">
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search description or category"
+                >
+
+                <select id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                </select>
+
+                <input
+                    type="date"
+                    id="startDate"
+                >
+
+                <input
+                    type="date"
+                    id="endDate"
+                >
+
+                <button id="filterButton">
+                    Apply Filters
+                </button>
+
+                <button id="clearFiltersButton">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="transactionsTable">
+
+                        <tr>
+                            <td colspan="6">
+                                Loading transactions...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div id="editTransactionModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Edit Transaction</h2>
+
+            <button id="closeEditModalButton">
+                ×
+            </button>
+        </div>
+
+        <form id="editTransactionForm">
+
+            <input
+                type="hidden"
+                id="editTransactionId"
+            >
+
+            <label for="editTransactionType">Type</label>
+
+            <select id="editTransactionType" required>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+
+
+            <label for="editTransactionCategory">Category</label>
+
+            <select id="editTransactionCategory" required>
+            </select>
+
+
+            <label for="editTransactionAmount">Amount</label>
+
+            <input
+                type="number"
+                id="editTransactionAmount"
+                min="0.01"
+                step="0.01"
+                required
+            >
+
+
+            <label for="editTransactionDescription">
+                Description
+            </label>
+
+            <input
+                type="text"
+                id="editTransactionDescription"
+                required
+            >
+
+
+            <label for="editTransactionDate">Date</label>
+
+            <input
+                type="date"
+                id="editTransactionDate"
+                required
+            >
+
+
+            <p id="editTransactionMessage"></p>
+
+
+            <button
+                type="submit"
+                class="save-transaction-button"
+            >
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+    <script src="js/transactions.js"></script>
+
+</body>
+</html>
