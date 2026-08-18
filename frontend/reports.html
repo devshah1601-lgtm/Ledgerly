@@ -11,132 +11,207 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="dashboard-body">
+<body class="app-body">
 
-    <header class="topbar">
+<div class="app-shell">
 
-    <div>
-        <h2>Ledgerly</h2>
-    </div>
+    <aside class="sidebar">
 
-    <nav class="topbar-actions">
+        <div class="sidebar-brand">
+            <div class="brand-icon">L</div>
+            <span>Ledgerly</span>
+        </div>
 
-        <a href="dashboard.html" class="nav-link">
-            Dashboard
-        </a>
+        <nav class="sidebar-nav">
 
-        <a href="transactions.html" class="nav-link">
-            Transactions
-        </a>
+            <a href="dashboard.html" class="sidebar-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
 
-        <a href="categories.html" class="nav-link">
-            Categories
-        </a>
+            <a href="transactions.html" class="sidebar-link">
+                <span>▤</span>
+                Transactions
+            </a>
 
-        <a href="reports.html" class="nav-link active">
-            Reports
-        </a>
+            <a href="add-transaction.html" class="sidebar-link">
+                <span>＋</span>
+                Add Transaction
+            </a>
 
-        <span id="userName">User</span>
+            <a href="cashbook.html" class="sidebar-link">
+                <span>▣</span>
+                Cashbook
+            </a>
 
-        <button id="logoutButton">
-            Logout
-        </button>
+            <a href="categories.html" class="sidebar-link">
+                <span>▦</span>
+                Categories
+            </a>
 
-    </nav>
+            <a href="reports.html" class="sidebar-link active">
+                <span>◫</span>
+                Reports
+            </a>
 
-</header>
+        </nav>
 
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="logout-link">
+                <span>↪</span>
+                Logout
+            </button>
+        </div>
 
-    <main class="dashboard-container">
-
-        <section class="welcome-section">
-
-            <h1>Financial Reports</h1>
-
-            <p>
-                Understand your business income and expenses.
-            </p>
-
-        </section>
-
-
-        <section class="summary-grid">
-
-            <div class="summary-card">
-                <p>Total Income</p>
-                <h2 id="reportIncome">₹0</h2>
-            </div>
-
-            <div class="summary-card">
-                <p>Total Expenses</p>
-                <h2 id="reportExpenses">₹0</h2>
-            </div>
-
-            <div class="summary-card">
-                <p>Net Balance</p>
-                <h2 id="reportBalance">₹0</h2>
-            </div>
-
-        </section>
+    </aside>
 
 
-        <section class="reports-grid">
+    <main class="main-content">
 
-            <div class="chart-card">
+        <header class="app-header">
 
-                <h2>Monthly Income vs Expenses</h2>
+            <div>
+                <h1>Reports</h1>
 
                 <p>
-                    Compare your monthly cash inflow and outflow.
+                    Understand your business performance through income and expense analytics.
                 </p>
+            </div>
 
-                <div class="chart-container">
+            <div class="header-user">
+
+                <div class="business-info">
+                    <span class="business-label">
+                        Current Business
+                    </span>
+
+                    <strong>Dev's Store</strong>
+                </div>
+
+                <div class="user-avatar">
+                    <span id="userInitial">U</span>
+                </div>
+
+                <span id="userName" class="hidden-user-name">
+                    User
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <section class="reports-summary">
+
+            <article class="report-stat-card report-income-card">
+
+                <p>Total Income</p>
+
+                <h2 id="reportIncome">
+                    ₹0
+                </h2>
+
+            </article>
+
+
+            <article class="report-stat-card report-expense-card">
+
+                <p>Total Expenses</p>
+
+                <h2 id="reportExpenses">
+                    ₹0
+                </h2>
+
+            </article>
+
+
+            <article class="report-stat-card report-balance-card">
+
+                <p>Net Balance</p>
+
+                <h2 id="reportBalance">
+                    ₹0
+                </h2>
+
+            </article>
+
+        </section>
+
+
+        <section class="reports-modern-grid">
+
+            <article class="report-chart-card monthly-report-card">
+
+                <div class="report-card-heading">
+
+                    <div>
+                        <h2>Monthly Income vs Expenses</h2>
+
+                        <p>
+                            Compare your cash inflow and outflow.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="report-chart-container">
                     <canvas id="monthlyChart"></canvas>
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="chart-card">
+            <article class="report-chart-card">
 
-                <h2>Expense Breakdown</h2>
+                <div class="report-card-heading">
 
-                <p>
-                    See where your business is spending money.
-                </p>
+                    <div>
+                        <h2>Expense Breakdown</h2>
 
-                <div class="chart-container small-chart">
+                        <p>
+                            See where your business spends money.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="report-chart-container report-small-chart">
                     <canvas id="expenseChart"></canvas>
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="chart-card">
+            <article class="report-chart-card">
 
-                <h2>Income Breakdown</h2>
+                <div class="report-card-heading">
 
-                <p>
-                    See where your business income comes from.
-                </p>
+                    <div>
+                        <h2>Income Breakdown</h2>
 
-                <div class="chart-container small-chart">
+                        <p>
+                            See where your business income comes from.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="report-chart-container report-small-chart">
                     <canvas id="incomeChart"></canvas>
                 </div>
 
-            </div>
+            </article>
 
         </section>
 
 
-        <section class="export-section">
+        <section class="report-export-card">
 
             <div>
                 <h2>Export Transactions</h2>
 
                 <p>
-                    Download your transaction history as a CSV file.
+                    Download your full transaction history as a CSV file.
                 </p>
             </div>
 
@@ -148,8 +223,10 @@
 
     </main>
 
+</div>
 
-    <script src="js/reports.js"></script>
+
+<script src="js/reports.js"></script>
 
 </body>
 </html>

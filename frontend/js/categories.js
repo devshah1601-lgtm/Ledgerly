@@ -3,7 +3,7 @@ const API_URL = "";
 const token = localStorage.getItem("access_token");
 
 if (!token) {
-    window.location.href = "login.html";
+    window.location.href = "/";
 }
 
 
@@ -16,13 +16,21 @@ async function loadUser() {
 
     if (!response.ok) {
         localStorage.removeItem("access_token");
-        window.location.href = "login.html";
+        window.location.href = "/";
         return;
     }
 
     const user = await response.json();
 
     document.getElementById("userName").textContent = user.name;
+
+    const userInitial =
+    document.getElementById("userInitial");
+
+if (userInitial && user.name) {
+    userInitial.textContent =
+        user.name.trim().charAt(0).toUpperCase();
+}
 }
 
 
@@ -181,9 +189,17 @@ document
     .getElementById("logoutButton")
     .addEventListener("click", function () {
 
+        const confirmed = confirm(
+            "Are you sure you want to logout?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
         localStorage.removeItem("access_token");
 
-        window.location.href = "login.html";
+        window.location.href = "/";
     });
 
 async function initializePage() {
@@ -331,5 +347,70 @@ document
                 "Could not connect to server";
         }
     });
+
+const incomeCategoryTab =
+    document.getElementById("incomeCategoryTab");
+
+const expenseCategoryTab =
+    document.getElementById("expenseCategoryTab");
+
+const incomeCategoriesPanel =
+    document.getElementById("incomeCategories");
+
+const expenseCategoriesPanel =
+    document.getElementById("expenseCategories");
+
+const showAddCategoryButton =
+    document.getElementById("showAddCategoryButton");
+
+const addCategorySection =
+    document.getElementById("addCategorySection");
+
+
+incomeCategoryTab.addEventListener("click", function () {
+
+    incomeCategoryTab.classList.add("active");
+    expenseCategoryTab.classList.remove("active");
+
+    incomeCategoriesPanel.classList.remove(
+        "hidden-category-panel"
+    );
+
+    expenseCategoriesPanel.classList.add(
+        "hidden-category-panel"
+    );
+});
+
+
+expenseCategoryTab.addEventListener("click", function () {
+
+    expenseCategoryTab.classList.add("active");
+    incomeCategoryTab.classList.remove("active");
+
+    expenseCategoriesPanel.classList.remove(
+        "hidden-category-panel"
+    );
+
+    incomeCategoriesPanel.classList.add(
+        "hidden-category-panel"
+    );
+});
+
+
+showAddCategoryButton.addEventListener(
+    "click",
+    function () {
+
+        addCategorySection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+        setTimeout(function () {
+            document
+                .getElementById("categoryName")
+                .focus();
+        }, 400);
+    }
+);
 
 initializePage();

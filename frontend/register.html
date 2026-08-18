@@ -9,19 +9,30 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="auth-page">
 
-    <div class="auth-container">
+<div class="auth-layout">
 
-        <div class="auth-card">
+    <section class="auth-panel">
+
+        <div class="auth-brand">
+            <div class="brand-icon">L</div>
+            <span>Ledgerly</span>
+        </div>
+
+        <div class="auth-card auth-card-modern">
 
             <h1>Create Account</h1>
 
-            <p>Start managing your business finances with Ledgerly</p>
+            <p class="auth-subtitle">
+                Start managing your business finances with Ledgerly.
+            </p>
 
             <form id="registerForm">
 
-                <label for="name">Name</label>
+                <label for="name">
+                    Name
+                </label>
 
                 <input
                     type="text"
@@ -30,42 +41,88 @@
                     required
                 >
 
-                <label for="registerEmail">Email</label>
+                <label for="registerEmail">
+                    Email
+                </label>
 
                 <input
                     type="email"
                     id="registerEmail"
-                    placeholder="Enter your email"
+                    placeholder="you@example.com"
                     required
                 >
 
-                <label for="registerPassword">Password</label>
+                <label for="registerPassword">
+                    Password
+                </label>
 
                 <input
                     type="password"
                     id="registerPassword"
                     placeholder="Minimum 8 characters"
+                    minlength="8"
                     required
                 >
 
-                <button type="submit">
-                    Register
+                <button
+                    type="submit"
+                    class="auth-primary-button"
+                >
+                    Create Account
                 </button>
 
             </form>
 
-            <p id="registerMessage"></p>
+            <p
+                id="registerMessage"
+                class="auth-message"
+            ></p>
 
-            <p>
+            <p class="auth-switch">
                 Already have an account?
-                <a href="login.html">Login</a>
+                <a href="login.html">
+                    Sign in
+                </a>
             </p>
 
         </div>
 
-    </div>
+    </section>
 
-    <script src="js/auth.js"></script>
+
+    <section class="auth-visual">
+
+        <div class="auth-visual-content">
+
+            <div class="store-illustration">
+                <div class="store-roof"></div>
+
+                <div class="store-building">
+                    <div class="store-window"></div>
+                    <div class="store-door"></div>
+                </div>
+
+                <div class="plant plant-left"></div>
+                <div class="plant plant-right"></div>
+            </div>
+
+            <h2>
+                Keep Your Business Finances Organized
+            </h2>
+
+            <p>
+                Record transactions, manage categories, track cash flow
+                and understand your business performance.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="js/auth.js"></script>
 
 </body>
 </html>

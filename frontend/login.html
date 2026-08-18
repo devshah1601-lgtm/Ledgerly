@@ -9,28 +9,41 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="auth-page">
 
-    <div class="auth-container">
+<div class="auth-layout">
 
-        <div class="auth-card">
+    <section class="auth-panel">
 
-            <h1>Ledgerly</h1>
+        <div class="auth-brand">
+            <div class="brand-icon">L</div>
+            <span>Ledgerly</span>
+        </div>
 
-            <p>Simple cashbook for small businesses</p>
+        <div class="auth-card auth-card-modern">
+
+            <h1>Welcome Back 👋</h1>
+
+            <p class="auth-subtitle">
+                Sign in to continue to your Ledgerly account.
+            </p>
 
             <form id="loginForm">
 
-                <label for="email">Email</label>
+                <label for="email">
+                    Email
+                </label>
 
                 <input
                     type="email"
                     id="email"
-                    placeholder="Enter your email"
+                    placeholder="you@example.com"
                     required
                 >
 
-                <label for="password">Password</label>
+                <label for="password">
+                    Password
+                </label>
 
                 <input
                     type="password"
@@ -39,24 +52,58 @@
                     required
                 >
 
-                <button type="submit">
-                    Login
+                <button type="submit" class="auth-primary-button">
+                    Sign In
                 </button>
 
             </form>
 
-            <p id="message"></p>
+            <p id="message" class="auth-message"></p>
 
-            <p>
+            <p class="auth-switch">
                 Don't have an account?
-                <a href="register.html">Register</a>
+                <a href="register.html">
+                    Sign up
+                </a>
             </p>
 
         </div>
 
-    </div>
+    </section>
 
-    <script src="js/auth.js"></script>
+
+    <section class="auth-visual">
+
+        <div class="auth-visual-content">
+
+            <div class="store-illustration">
+                <div class="store-roof"></div>
+
+                <div class="store-building">
+                    <div class="store-window"></div>
+                    <div class="store-door"></div>
+                </div>
+
+                <div class="plant plant-left"></div>
+                <div class="plant plant-right"></div>
+            </div>
+
+            <h2>
+                Simple Accounting for Small Businesses
+            </h2>
+
+            <p>
+                Track income, expenses, cash flow and business performance in one place.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="js/auth.js"></script>
 
 </body>
 </html>

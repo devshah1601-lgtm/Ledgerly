@@ -83,8 +83,8 @@ if (registerForm) {
             message.textContent = "Account created successfully";
 
             setTimeout(function () {
-                window.location.href = "login.html";
-            }, 1000);
+            window.location.href = "/";
+        }, 1000);
 
         } catch (error) {
             message.textContent = "Could not connect to server";

@@ -9,99 +9,171 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="dashboard-body">
+<body class="app-body">
 
-    <header class="topbar">
+<div class="app-shell">
 
-    <div>
-        <h2>Ledgerly</h2>
-    </div>
+    <aside class="sidebar">
 
-    <nav class="topbar-actions">
+        <div class="sidebar-brand">
+            <div class="brand-icon">L</div>
+            <span>Ledgerly</span>
+        </div>
 
-        <a href="dashboard.html" class="nav-link">
-            Dashboard
-        </a>
+        <nav class="sidebar-nav">
 
-        <a href="transactions.html" class="nav-link">
-            Transactions
-        </a>
+            <a href="dashboard.html" class="sidebar-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
 
-        <a href="categories.html" class="nav-link active">
-            Categories
-        </a>
+            <a href="transactions.html" class="sidebar-link">
+                <span>▤</span>
+                Transactions
+            </a>
 
-        <a href="reports.html" class="nav-link">
-            Reports
-        </a>
+            <a href="add-transaction.html" class="sidebar-link">
+                <span>＋</span>
+                Add Transaction
+            </a>
 
-        <span id="userName">User</span>
+            <a href="cashbook.html" class="sidebar-link">
+                <span>▣</span>
+                Cashbook
+            </a>
 
-        <button id="logoutButton">
-            Logout
-        </button>
+            <a href="categories.html" class="sidebar-link active">
+                <span>▦</span>
+                Categories
+            </a>
 
-    </nav>
+            <a href="reports.html" class="sidebar-link">
+                <span>◫</span>
+                Reports
+            </a>
 
-</header>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="logout-link">
+                <span>↪</span>
+                Logout
+            </button>
+        </div>
+
+    </aside>
 
 
-    <main class="dashboard-container">
+    <main class="main-content">
 
-        <section class="welcome-section">
+        <header class="app-header">
 
-            <h1>Categories</h1>
+            <div>
+                <h1>Categories</h1>
+                <p>
+                    Manage the income and expense categories used across Ledgerly.
+                </p>
+            </div>
 
-            <p>
-                Manage your income and expense categories.
-            </p>
+            <div class="header-user">
 
-        </section>
+                <div class="business-info">
+                    <span class="business-label">
+                        Current Business
+                    </span>
 
-
-        <section class="categories-grid">
-
-            <div class="category-panel">
-
-                <div class="section-header">
-
-                    <div>
-                        <h2>Income Categories</h2>
-                        <p>Categories used for money coming in.</p>
-                    </div>
-
+                    <strong>Dev's Store</strong>
                 </div>
 
-                <div id="incomeCategories">
-                    Loading...
+                <div class="user-avatar">
+                    <span id="userInitial">U</span>
                 </div>
+
+                <span id="userName" class="hidden-user-name">
+                    User
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <section class="categories-modern-card">
+
+            <div class="categories-modern-header">
+
+                <div>
+                    <h2>Manage Categories</h2>
+
+                    <p>
+                        Add, edit or remove categories for income and expenses.
+                    </p>
+                </div>
+
+                <button
+                    id="showAddCategoryButton"
+                    class="primary-category-button"
+                >
+                    + Add Category
+                </button>
 
             </div>
 
 
-            <div class="category-panel">
+            <div class="category-tabs">
 
-                <div class="section-header">
+                <button
+                    type="button"
+                    id="incomeCategoryTab"
+                    class="category-tab active"
+                >
+                    Income Categories
+                </button>
 
-                    <div>
-                        <h2>Expense Categories</h2>
-                        <p>Categories used for money going out.</p>
-                    </div>
+                <button
+                    type="button"
+                    id="expenseCategoryTab"
+                    class="category-tab"
+                >
+                    Expense Categories
+                </button>
 
-                </div>
+            </div>
 
-                <div id="expenseCategories">
-                    Loading...
-                </div>
 
+            <div
+                id="incomeCategories"
+                class="category-list-panel"
+            >
+                Loading...
+            </div>
+
+            <div
+                id="expenseCategories"
+                class="category-list-panel hidden-category-panel"
+            >
+                Loading...
             </div>
 
         </section>
 
 
-        <section class="add-category-section">
+        <section
+            id="addCategorySection"
+            class="add-category-section-modern"
+        >
 
-            <h2>Add Category</h2>
+            <div class="add-category-header">
+
+                <div>
+                    <h2>Add Category</h2>
+
+                    <p>
+                        Create a new category for your transactions.
+                    </p>
+                </div>
+
+            </div>
 
             <form id="categoryForm">
 
@@ -130,23 +202,36 @@
 
     </main>
 
-    <div id="editCategoryModal" class="modal">
+</div>
+
+
+<div id="editCategoryModal" class="modal">
 
     <div class="modal-content">
 
         <div class="modal-header">
-            <h2>Edit Category</h2>
+
+            <div>
+                <h2>Edit Category</h2>
+                <p>Update category details</p>
+            </div>
 
             <button id="closeCategoryModalButton">
                 ×
             </button>
+
         </div>
 
         <form id="editCategoryForm">
 
-            <input type="hidden" id="editCategoryId">
+            <input
+                type="hidden"
+                id="editCategoryId"
+            >
 
-            <label for="editCategoryName">Category Name</label>
+            <label for="editCategoryName">
+                Category Name
+            </label>
 
             <input
                 type="text"
@@ -154,7 +239,9 @@
                 required
             >
 
-            <label for="editCategoryType">Type</label>
+            <label for="editCategoryType">
+                Type
+            </label>
 
             <select id="editCategoryType" required>
                 <option value="income">Income</option>
@@ -177,7 +264,7 @@
 </div>
 
 
-    <script src="js/categories.js"></script>
+<script src="js/categories.js"></script>
 
 </body>
 </html>

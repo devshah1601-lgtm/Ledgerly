@@ -9,65 +9,133 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="dashboard-body">
+<body class="app-body">
 
-    <header class="topbar">
+<div class="app-shell">
 
-    <div>
-        <h2>Ledgerly</h2>
-    </div>
+    <aside class="sidebar">
 
-    <nav class="topbar-actions">
+        <div class="sidebar-brand">
+            <div class="brand-icon">L</div>
+            <span>Ledgerly</span>
+        </div>
 
-        <a href="dashboard.html" class="nav-link">
-            Dashboard
-        </a>
+        <nav class="sidebar-nav">
 
-        <a href="transactions.html" class="nav-link active">
-            Transactions
-        </a>
+            <a href="dashboard.html" class="sidebar-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
 
-        <a href="categories.html" class="nav-link">
-            Categories
-        </a>
+            <a href="transactions.html" class="sidebar-link active">
+                <span>▤</span>
+                Transactions
+            </a>
 
-        <a href="reports.html" class="nav-link">
-            Reports
-        </a>
+            <a href="add-transaction.html" class="sidebar-link">
+                <span>＋</span>
+                Add Transaction
+            </a>
 
-        <span id="userName">User</span>
+            <a href="cashbook.html" class="sidebar-link">
+                <span>▣</span>
+                Cashbook
+            </a>
 
-        <button id="logoutButton">
-            Logout
-        </button>
+            <a href="categories.html" class="sidebar-link">
+                <span>▦</span>
+                Categories
+            </a>
 
-    </nav>
+            <a href="reports.html" class="sidebar-link">
+                <span>◫</span>
+                Reports
+            </a>
 
-</header>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="logout-link">
+                <span>↪</span>
+                Logout
+            </button>
+        </div>
+
+    </aside>
 
 
-    <main class="dashboard-container">
+    <main class="main-content">
 
-        <section class="welcome-section">
+        <header class="app-header">
 
-            <h1>Transactions</h1>
+            <div>
+                <h1>Transactions</h1>
 
-            <p>
-                View, search, filter, edit and delete your transactions.
-            </p>
+                <p>
+                    View, search, filter, edit and manage your business transactions.
+                </p>
+            </div>
 
-        </section>
+            <div class="header-user">
+
+                <div class="business-info">
+                    <span class="business-label">
+                        Current Business
+                    </span>
+
+                    <strong>
+                        Dev's Store
+                    </strong>
+                </div>
+
+                <div class="user-avatar">
+                    <span id="userInitial">U</span>
+                </div>
+
+                <span id="userName" class="hidden-user-name">
+                    User
+                </span>
+
+            </div>
+
+        </header>
 
 
-        <section class="transactions-section">
+        <section class="transactions-page-card">
 
-            <div class="filters">
+            <div class="transactions-toolbar">
+
+                <button class="filter-toggle-button">
+                    ☰ Filters
+                </button>
+
+                <div class="date-filter-group">
+
+                    <input
+                        type="date"
+                        id="startDate"
+                    >
+
+                    <span>to</span>
+
+                    <input
+                        type="date"
+                        id="endDate"
+                    >
+
+                </div>
 
                 <input
                     type="text"
                     id="searchInput"
-                    placeholder="Search description or category"
+                    class="transaction-search"
+                    placeholder="Search transactions..."
                 >
+
+            </div>
+
+
+            <div class="advanced-filters">
 
                 <select id="typeFilter">
                     <option value="">All Types</option>
@@ -78,16 +146,6 @@
                 <select id="categoryFilter">
                     <option value="">All Categories</option>
                 </select>
-
-                <input
-                    type="date"
-                    id="startDate"
-                >
-
-                <input
-                    type="date"
-                    id="endDate"
-                >
 
                 <button id="filterButton">
                     Apply Filters
@@ -102,7 +160,7 @@
 
             <div class="table-container">
 
-                <table>
+                <table class="transactions-modern-table">
 
                     <thead>
                         <tr>
@@ -133,16 +191,24 @@
 
     </main>
 
-    <div id="editTransactionModal" class="modal">
+</div>
 
-    <div class="modal-content">
+
+<div id="editTransactionModal" class="modal">
+
+    <div class="modal-content transaction-modal-content">
 
         <div class="modal-header">
-            <h2>Edit Transaction</h2>
+
+            <div>
+                <h2>Edit Transaction</h2>
+                <p>Update transaction details</p>
+            </div>
 
             <button id="closeEditModalButton">
                 ×
             </button>
+
         </div>
 
         <form id="editTransactionForm">
@@ -152,21 +218,25 @@
                 id="editTransactionId"
             >
 
-            <label for="editTransactionType">Type</label>
+            <label for="editTransactionType">
+                Type
+            </label>
 
             <select id="editTransactionType" required>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
             </select>
 
-
-            <label for="editTransactionCategory">Category</label>
+            <label for="editTransactionCategory">
+                Category
+            </label>
 
             <select id="editTransactionCategory" required>
             </select>
 
-
-            <label for="editTransactionAmount">Amount</label>
+            <label for="editTransactionAmount">
+                Amount
+            </label>
 
             <input
                 type="number"
@@ -175,7 +245,6 @@
                 step="0.01"
                 required
             >
-
 
             <label for="editTransactionDescription">
                 Description
@@ -187,8 +256,9 @@
                 required
             >
 
-
-            <label for="editTransactionDate">Date</label>
+            <label for="editTransactionDate">
+                Date
+            </label>
 
             <input
                 type="date"
@@ -196,9 +266,7 @@
                 required
             >
 
-
             <p id="editTransactionMessage"></p>
-
 
             <button
                 type="submit"
@@ -214,7 +282,7 @@
 </div>
 
 
-    <script src="js/transactions.js"></script>
+<script src="js/transactions.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@ const API_URL = "";
 const token = localStorage.getItem("access_token");
 
 if (!token) {
-    window.location.href = "login.html";
+    window.location.href = "/";
 }
 
 
@@ -16,13 +16,21 @@ async function loadUser() {
 
     if (!response.ok) {
         localStorage.removeItem("access_token");
-        window.location.href = "login.html";
+        window.location.href = "/";
         return;
     }
 
     const user = await response.json();
 
     document.getElementById("userName").textContent = user.name;
+
+    const userInitial =
+    document.getElementById("userInitial");
+
+if (userInitial && user.name) {
+    userInitial.textContent =
+        user.name.trim().charAt(0).toUpperCase();
+}
 }
 
 
@@ -93,9 +101,17 @@ document
     .getElementById("logoutButton")
     .addEventListener("click", function () {
 
+        const confirmed = confirm(
+            "Are you sure you want to logout?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
         localStorage.removeItem("access_token");
 
-        window.location.href = "login.html";
+        window.location.href = "/";
     });
 
 

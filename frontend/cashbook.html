@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ledgerly Cashbook</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="app-body">
+
+<div class="app-shell">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">L</div>
+            <span>Ledgerly</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="sidebar-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="transactions.html" class="sidebar-link">
+                <span>▤</span>
+                Transactions
+            </a>
+
+            <a href="add-transaction.html" class="sidebar-link">
+                <span>＋</span>
+                Add Transaction
+            </a>
+
+            <a href="cashbook.html" class="sidebar-link active">
+                <span>▣</span>
+                Cashbook
+            </a>
+
+            <a href="categories.html" class="sidebar-link">
+                <span>▦</span>
+                Categories
+            </a>
+
+            <a href="reports.html" class="sidebar-link">
+                <span>◫</span>
+                Reports
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="logout-link">
+                <span>↪</span>
+                Logout
+            </button>
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="app-header">
+
+            <div>
+                <h1>Cashbook</h1>
+                <p>
+                    Track your daily inflow, outflow and running balance.
+                </p>
+            </div>
+
+            <div class="header-user">
+
+                <div class="business-info">
+                    <span class="business-label">
+                        Current Business
+                    </span>
+
+                    <strong>
+                        Dev's Store
+                    </strong>
+                </div>
+
+                <div class="user-avatar">
+                    <span id="userInitial">U</span>
+                </div>
+
+                <span id="userName" class="hidden-user-name">
+                    User
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <section class="cashbook-summary">
+
+            <article class="cashbook-stat-card">
+
+                <p>Opening Balance</p>
+
+                <h2 id="openingBalance">
+                    ₹0
+                </h2>
+
+            </article>
+
+
+            <article class="cashbook-stat-card cashbook-income">
+
+                <p>Total Income</p>
+
+                <h2 id="cashbookIncome">
+                    ₹0
+                </h2>
+
+            </article>
+
+
+            <article class="cashbook-stat-card cashbook-expense">
+
+                <p>Total Expenses</p>
+
+                <h2 id="cashbookExpenses">
+                    ₹0
+                </h2>
+
+            </article>
+
+
+            <article class="cashbook-stat-card cashbook-closing">
+
+                <p>Closing Balance</p>
+
+                <h2 id="closingBalance">
+                    ₹0
+                </h2>
+
+            </article>
+
+        </section>
+
+
+        <section class="cashbook-card">
+
+            <div class="cashbook-card-header">
+
+                <div>
+                    <h2>Daily Cash Flow</h2>
+
+                    <p>
+                        Complete income and expense movement with running balance.
+                    </p>
+                </div>
+
+                <a
+                    href="transactions.html"
+                    class="view-all-link"
+                >
+                    View Transactions
+                </a>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="cashbook-table">
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Particulars</th>
+                            <th>Income</th>
+                            <th>Expense</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cashbookTable">
+
+                        <tr>
+                            <td colspan="5">
+                                Loading cashbook...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/cashbook.js"></script>
+
+</body>
+</html>

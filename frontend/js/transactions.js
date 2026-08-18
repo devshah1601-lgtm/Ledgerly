@@ -6,7 +6,7 @@ let categories = [];
 let transactionsData = [];
 
 if (!token) {
-    window.location.href = "login.html";
+    window.location.href = "/";
 }
 
 
@@ -19,7 +19,7 @@ async function loadUser() {
 
     if (!response.ok) {
         localStorage.removeItem("access_token");
-        window.location.href = "login.html";
+        window.location.href = "/";
         return;
     }
 
@@ -233,9 +233,17 @@ document
     .getElementById("logoutButton")
     .addEventListener("click", function () {
 
+        const confirmed = confirm(
+            "Are you sure you want to logout?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
         localStorage.removeItem("access_token");
 
-        window.location.href = "login.html";
+        window.location.href = "/";
     });
 
 document

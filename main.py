@@ -748,6 +748,13 @@ def dashboard_page():
 def transactions_page():
     return FileResponse("frontend/transactions.html")
 
+@app.get("/add-transaction.html", include_in_schema=False)
+def add_transaction_page():
+    return FileResponse("frontend/add-transaction.html")
+
+@app.get("/cashbook.html", include_in_schema=False)
+def cashbook_page():
+    return FileResponse("frontend/cashbook.html")
 
 @app.get("/categories.html", include_in_schema=False)
 def categories_page():
