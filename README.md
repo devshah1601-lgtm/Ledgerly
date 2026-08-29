@@ -124,30 +124,16 @@ Financial reports provide users with a clearer view of their recorded income and
 ## 🏗️ Project Architecture
 
 ```text
+## 🏗️ Project Architecture
+
 Ledgerly/
 │
-├── app/
-│   ├── models/
-│   ├── routers/
-│   ├── schemas/
-│   ├── database.py
-│   ├── security.py
-│   └── main.py
-│
+├── alembic/
 ├── frontend/
 │   ├── css/
-│   │   └── style.css
-│   │
 │   ├── js/
-│   │   ├── auth.js
-│   │   ├── dashboard.js
-│   │   ├── transactions.js
-│   │   ├── categories.js
-│   │   ├── reports.js
-│   │   ├── cashbook.js
-│   │   └── add-transaction.js
-│   │
 │   ├── login.html
+│   ├── register.html
 │   ├── dashboard.html
 │   ├── transactions.html
 │   ├── cashbook.html
@@ -155,10 +141,14 @@ Ledgerly/
 │   ├── categories.html
 │   └── reports.html
 │
-├── alembic/
+├── screenshots/
+├── .gitignore
+├── Security.py
+├── database.py
+├── main.py
+├── models.py
 ├── alembic.ini
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
 
@@ -171,7 +161,7 @@ Ledgerly/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/devshah1601-lgtm/Ledgerly.git
 cd Ledgerly
 ```
 
@@ -217,7 +207,7 @@ alembic upgrade head
 ### 7. Start the FastAPI application
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 ```
 
 Open the application in your browser:
