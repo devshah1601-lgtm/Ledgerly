@@ -69,6 +69,26 @@ Financial reports provide users with a clearer view of their recorded income and
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard
+
+![Ledgerly Dashboard](screenshots/dashboard.png)
+
+### Transactions
+
+![Ledgerly Transactions](screenshots/transactions.png)
+
+### Add Transaction
+
+![Ledgerly Add Transaction](screenshots/add_transactions.png)
+
+### Reports
+
+![Ledgerly Reports](screenshots/reports.png)
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend
